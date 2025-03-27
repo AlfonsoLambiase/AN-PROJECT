@@ -95,8 +95,22 @@
     </form>
 
     <script>
-        
-         
+        const btn = document.getElementById("btnf");
+        const body = document.querySelector("body");
+
+        // Aggiungi un ascoltatore di eventi per il submit del form
+        btn.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            // Crea un nuovo elemento img
+            const foto = document.createElement("img");
+            
+            // Imposta l'attributo src per l'immagine
+            foto.setAttribute("src", "assets/SCORPIONE.jpg");
+            
+            // Aggiungi l'immagine al corpo della pagina
+            body.appendChild(foto);
+        });
     </script>
 </body>
 
