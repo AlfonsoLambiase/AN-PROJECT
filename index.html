@@ -3,9 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OROSCOPO</title>
+    <title>Home</title>
+   <style>
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 200px;
+    background-color: rgb(230, 179, 230);
+    
+}
+
+.container{
+    text-align: center;
+    background-color: violet;
+    margin: 50px;
+    margin-left: 100px;
+    border-radius: 30px;
+    padding: 50px;
+}
+
+.titolo{
+    color: rgb(66, 3, 66);
+}
+
+.p{
+    color: rgb(66, 3, 66);
+    font-size: larger;
+}
+
+.arrow {
+  font-size: 30px;
+  display: inline-block;
+  margin-left: 10px;
+  animation: pulse 1s infinite;
+}
+
+/* Animazione della freccia che pulsa */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+   </style>
 </head>
 <body>
-    
+    <div class="container">
+    <h1 class="titolo">OROSCOPIAMO?</h1>
+    <p>Sei pronto a saperne di più su di te? </p>
+    <p>Questa è l'occasione perfetta! <br>
+       Compila il form di registrazione e preparati ad immergerti nello zodiaco!✈️ </p>
+       <span class="arrow">↓</span> <br> <br>
+       <a href="">CLICCA QUI!</a>
+    </div>
+
 </body>
 </html>
