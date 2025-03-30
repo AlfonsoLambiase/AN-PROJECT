@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORM</title>
+    <title>Form</title>
+    <link rel="icon" href="assets/favicon.webp" type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -18,7 +19,6 @@
             align-items: center;
             overflow: hidden;
         }
-
 
         form {
             padding: 30px;
@@ -73,6 +73,25 @@
             background-color: rgba(6, 6, 97, 0.733);
             color: white;
         }
+
+        #close {
+            padding: 10px;
+            display: none;
+            margin: auto;
+            margin-top: 20px;
+            background-color: white;
+            color: rgba(6, 6, 97, 0.733);
+            font-size: medium;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            border-radius: 10px;
+        }
+
+        #zodiacImage {
+            max-width: 300px;
+            margin-top: 20px;
+            display: none;
+        }
     </style>
 </head>
 
@@ -86,30 +105,87 @@
         <input type="text" placeholder="Digita un testo" required maxlength="25" minlength="5">
         <br>
         <label for="date" id="dataNascita">DATA DI NASCITA</label>
-        <input type="date" required>
+        <input type="date" required id="birthDate">
         <br>
         <label for="email">E-MAIL</label>
         <input type="email" placeholder="Digita un e-mail valida" required>
         <br>
         <button type="submit" id="btnf">AVANTI</button>
     </form>
-
+    <div id="imageAndBackButton">
+        <img id="zodiacImage" src="assets/" alt="Zodiac Image">
+        <button type="button" id="close">INDIETRO</button>
+    </div>
     <script>
+        const form = document.querySelector("form");
+        const dataNascita = document.getElementById("birthDate");
         const btn = document.getElementById("btnf");
-        const body = document.querySelector("body");
+        const xclose = document.getElementById("close");
+        const zodiacImage = document.getElementById("zodiacImage");
+        const imageAndBackButton = document.getElementById("imageAndBackButton");
 
-        // Aggiungi un ascoltatore di eventi per il submit del form
-        btn.addEventListener("click", (event) => {
+
+
+        function getZodiacSign(date) {
+            const month = date.getMonth() + 1;  // I mesi partono da 0, quindi aggiungiamo 1
+            const day = date.getDate();
+
+            if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return 'ARIETE';
+            if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return 'TORO';
+            if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) return 'GEMELLI';
+            if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) return 'CANCRO';
+            if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) return 'LEONE';
+            if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) return 'VERGINE';
+            if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) return 'BILANCIA';
+            if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) return 'SCORPIONE';
+            if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) return 'SAGITTARIO';
+            if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) return 'CAPRICORNO';
+            if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) return 'ACQUARIO';
+            if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) return 'PESCI';
+
+            return null;
+        }
+
+
+        form.addEventListener("submit", (event) => {
             event.preventDefault();
+            event.stopPropagation();
+            btn.style.display = "none";
+            xclose.style.display = "block";  // Mostra il bottone "INDIETRO"
 
-            // Crea un nuovo elemento img
-            const foto = document.createElement("img");
+            const birthDateValue = dataNascita.value;
+            const birthDate = new Date(birthDateValue);
+            const zodiacSign = getZodiacSign(birthDate);
             
-            // Imposta l'attributo src per l'immagine
-            foto.setAttribute("src", "assets/SCORPIONE.jpg");
-            
-            // Aggiungi l'immagine al corpo della pagina
-            body.appendChild(foto);
+
+            if (zodiacSign) {
+                imageAndBackButton.style.display = "block";
+                zodiacImage.src = `assets/${zodiacSign}.webp`;   // Imposta prima il percorso per il formato webp
+                zodiacImage.alt = zodiacSign;    // Imposta il percorso dell'immagine corrispondente al segno zodiacale
+                zodiacImage.style.display = "block";
+                form.style.display = "none";
+
+                zodiacImage.onerror = function () {
+                    zodiacImage.src = `assets/${zodiacSign}.jpg`;   // Se l'immagine .webp non viene trovata, caricherà la versione .jpg
+                };
+            }
+        });
+
+
+        xclose.addEventListener("mouseover", () => {
+            xclose.style.backgroundColor = "rgba(6, 6, 97, 0.733)";   // Cambia colore al bottone quando in Hover
+            xclose.style.color = "white";
+        });
+
+
+        xclose.addEventListener("mouseout", () => {
+            xclose.style.backgroundColor = "";  // Rimuovi gli stili quando non in Hover
+            xclose.style.color = "";
+        });
+
+
+        xclose.addEventListener("click", () => {
+            window.history.back();   // Torna alla pagina precedente al click
         });
     </script>
 </body>
