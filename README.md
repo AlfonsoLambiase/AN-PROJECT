@@ -1,2 +1,3 @@
-# AN-PROJECT
-Progetto di coppia 
+# ZodiacFinder
+La pagina offre un'esperienza interattiva e semplice per determinare il segno zodiacale in base alla data di nascita. La navigazione inizia dalla Home, dove l'utente viene accolto da un'interfaccia intuitiva. Cliccando su un apposito pulsante, l'utente viene indirizzato a una seconda pagina che ospita un form da compilare con i propri dati.
+Una volta che l'utente inserisce la data di nascita nel form e invia il modulo, il sistema elabora i dati e restituisce, in modo immediato, un'immagine rappresentativa del segno zodiacale corrispondente che aiuta a rendere l'esperienza visivamente coinvolgente e interessante. Questo processo avviene in pochi passaggi, garantendo un'esperienza rapida e user-friendly
